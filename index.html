@@ -3,752 +3,851 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบบันทึก OT มูลค่า 100,000 บาท</title>
+    <title>ระบบบันทึก OT ระดับองค์กร | มูลค่า 1,000,000 บาท</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-light: #eef1fd;
-            --primary-dark: #3a56d4;
-            --secondary: #ff6b6b;
-            --success: #4cc9f0;
-            --warning: #ff9e00;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --gray: #6c757d;
-            --light-gray: #e9ecef;
-            --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            --border-radius: 16px;
+            --primary: #6a11cb;
+            --primary-light: #8e2de2;
+            --secondary: #ff8c00;
+            --gold: #ffd700;
+            --dark: #1a1a2e;
+            --light: #f8f9ff;
+            --success: #00c9a7;
+            --danger: #ff6b6b;
+            --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+            --border-radius: 20px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Kanit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Kanit', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #f0f4ff 0%, #e6f0ff 100%);
-            color: var(--dark);
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
             min-height: 100vh;
             padding: 20px;
-            line-height: 1.6;
+            line-height: 1.7;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
         }
         
-        /* Header */
-        header {
-            background: linear-gradient(120deg, var(--primary), var(--primary-dark));
+        /* Premium Header */
+        .premium-header {
+            background: linear-gradient(120deg, var(--primary), var(--primary-light));
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 25px 40px;
-            margin-bottom: 30px;
-            color: white;
+            padding: 30px 50px;
+            margin-bottom: 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
         }
         
-        .header-content {
+        .premium-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,215,0,0.15) 0%, transparent 70%);
+        }
+        
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 20px;
         }
         
-        .logo {
-            width: 70px;
-            height: 70px;
-            background: white;
-            border-radius: 18px;
+        .premium-logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--gold), #ffa500);
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: var(--primary);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            font-size: 2.5rem;
+            color: var(--dark);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
         
         .header-text h1 {
-            font-size: 2.2rem;
-            margin-bottom: 5px;
-            font-weight: 600;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            background: linear-gradient(to right, var(--gold), #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
         .header-text p {
-            font-size: 1.1rem;
+            font-size: 1.3rem;
             opacity: 0.9;
+            max-width: 600px;
         }
         
         .price-tag {
-            background: white;
-            color: var(--primary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(to right, var(--gold), #ffa500);
+            color: var(--dark);
+            padding: 12px 35px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            min-width: 300px;
+            text-align: center;
         }
         
-        /* Dashboard */
-        .dashboard {
+        /* Enterprise Dashboard */
+        .enterprise-dashboard {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
         
-        .card {
-            background: white;
+        .enterprise-card {
+            background: linear-gradient(135deg, rgba(42, 39, 79, 0.8) 0%, rgba(34, 32, 80, 0.9) 100%);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 25px;
+            padding: 30px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            border: 1px solid rgba(106, 17, 203, 0.5);
         }
         
-        .card:hover {
-            transform: translateY(-5px);
+        .enterprise-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
         
-        .card::before {
+        .enterprise-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 5px;
             height: 100%;
-            background: var(--primary);
-        }
-        
-        .card:nth-child(2)::before {
-            background: var(--warning);
-        }
-        
-        .card:nth-child(3)::before {
             background: var(--secondary);
         }
         
+        .enterprise-card:nth-child(2)::before {
+            background: var(--success);
+        }
+        
+        .enterprise-card:nth-child(3)::before {
+            background: var(--gold);
+        }
+        
+        .enterprise-card:nth-child(4)::before {
+            background: var(--primary-light);
+        }
+        
         .card-title {
-            font-size: 1.1rem;
-            color: var(--gray);
-            margin-bottom: 15px;
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .card-value {
-            font-size: 2.4rem;
+            font-size: 3rem;
             font-weight: 700;
-            color: var(--primary);
-            margin: 10px 0;
+            margin: 15px 0;
+            background: linear-gradient(to right, var(--light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .card-subtitle {
-            color: var(--gray);
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
         }
         
-        /* Main App */
-        .app-container {
+        /* Main App Container */
+        .enterprise-app-container {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: 35px;
+            margin-bottom: 40px;
         }
         
-        @media (min-width: 992px) {
-            .app-container {
+        @media (min-width: 1600px) {
+            .enterprise-app-container {
                 grid-template-columns: 1fr 1fr;
             }
         }
         
-        /* Form Section */
-        .form-container {
-            background: white;
+        /* Premium Form */
+        .premium-form-container {
+            background: linear-gradient(135deg, rgba(42, 39, 79, 0.8) 0%, rgba(34, 32, 80, 0.9) 100%);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 30px;
+            padding: 35px;
+            border: 1px solid rgba(106, 17, 203, 0.5);
         }
         
         .form-title {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--primary);
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--gold);
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-gray);
+            gap: 15px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
         
         .form-group {
-            margin-bottom: 22px;
+            margin-bottom: 25px;
         }
         
         .form-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-weight: 500;
-            color: var(--dark);
-            font-size: 1.05rem;
+            color: var(--gold);
+            font-size: 1.2rem;
         }
         
-        .form-control {
+        .premium-input {
             width: 100%;
-            padding: 15px;
-            border: 1px solid var(--light-gray);
-            border-radius: 12px;
-            font-size: 1.05rem;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 12px;
+            padding: 18px;
+            background: rgba(25, 25, 50, 0.6);
+            border: 1px solid rgba(106, 17, 203, 0.5);
+            border-radius: 15px;
             font-size: 1.1rem;
+            transition: var(--transition);
+            color: var(--light);
+        }
+        
+        .premium-input:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.2);
+            background: rgba(30, 30, 60, 0.7);
+        }
+        
+        .premium-btn {
+            display: inline-block;
+            padding: 18px 35px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-align: center;
+            background: linear-gradient(to right, var(--gold), #ffa500);
+            color: var(--dark);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
         }
         
-        .btn-primary {
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            color: white;
-            box-shadow: 0 6px 15px rgba(67, 97, 238, 0.3);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.4);
+        .premium-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.4);
         }
         
         .btn-block {
             display: block;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         
-        /* Records Section */
-        .records-container {
-            background: white;
+        /* Enterprise Records */
+        .enterprise-records-container {
+            background: linear-gradient(135deg, rgba(42, 39, 79, 0.8) 0%, rgba(34, 32, 80, 0.9) 100%);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 30px;
+            padding: 35px;
+            border: 1px solid rgba(106, 17, 203, 0.5);
         }
         
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
         
-        .filter-group {
+        .enterprise-filter-group {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
             flex-wrap: wrap;
         }
         
-        .filter-select {
-            padding: 12px 18px;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            background: white;
-            font-size: 1.05rem;
-            min-width: 150px;
+        .enterprise-select {
+            padding: 15px 20px;
+            background: rgba(25, 25, 50, 0.6);
+            border: 1px solid rgba(106, 17, 203, 0.5);
+            border-radius: 15px;
+            color: var(--light);
+            font-size: 1.1rem;
+            min-width: 180px;
         }
         
-        .search-box {
-            padding: 12px 18px;
-            border: 1px solid var(--light-gray);
-            border-radius: 10px;
-            width: 250px;
-            font-size: 1.05rem;
+        .enterprise-search {
+            padding: 15px 20px;
+            background: rgba(25, 25, 50, 0.6);
+            border: 1px solid rgba(106, 17, 203, 0.5);
+            border-radius: 15px;
+            width: 300px;
+            font-size: 1.1rem;
+            color: var(--light);
         }
         
-        .record-list {
-            max-height: 500px;
+        .enterprise-record-list {
+            max-height: 600px;
             overflow-y: auto;
-            border-radius: 12px;
-            border: 1px solid var(--light-gray);
-            background: #fafbff;
+            border-radius: 15px;
+            border: 1px solid rgba(106, 17, 203, 0.5);
+            background: rgba(20, 20, 45, 0.6);
         }
         
-        .record-item {
-            padding: 20px;
-            border-bottom: 1px solid var(--light-gray);
+        .enterprise-record-item {
+            padding: 25px;
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
             display: grid;
             grid-template-columns: 1fr auto;
             align-items: center;
-            gap: 15px;
-            transition: background 0.2s;
-            background: white;
+            gap: 20px;
+            transition: var(--transition);
+            background: rgba(30, 30, 60, 0.4);
         }
         
-        .record-item:hover {
-            background: var(--primary-light);
+        .enterprise-record-item:hover {
+            background: rgba(50, 50, 100, 0.5);
         }
         
-        .record-item:last-child {
+        .enterprise-record-item:last-child {
             border-bottom: none;
         }
         
         .record-info {
             display: grid;
             grid-template-columns: 1fr auto;
-            gap: 10px;
+            gap: 15px;
         }
         
         .record-date {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-size: 1.3rem;
         }
         
         .record-hours {
             font-weight: 700;
-            color: white;
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-            padding: 6px 15px;
+            color: var(--dark);
+            background: linear-gradient(to right, var(--gold), #ffa500);
+            padding: 8px 20px;
             border-radius: 30px;
-            font-size: 1rem;
-            min-width: 90px;
+            font-size: 1.1rem;
+            min-width: 110px;
             text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
         }
         
         .record-desc {
             grid-column: 1 / span 2;
-            color: var(--gray);
-            font-size: 1rem;
-            margin-top: 12px;
-            line-height: 1.6;
-            padding: 12px;
-            background: #f8f9ff;
-            border-radius: 8px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            margin-top: 15px;
+            line-height: 1.7;
+            padding: 15px;
+            background: rgba(25, 25, 50, 0.6);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
         }
         
-        .record-actions {
+        .enterprise-actions {
             display: flex;
-            gap: 10px;
+            gap: 15px;
         }
         
-        .action-btn {
-            background: none;
+        .enterprise-action-btn {
+            background: rgba(50, 50, 100, 0.6);
             border: none;
-            color: var(--gray);
+            color: var(--light);
             cursor: pointer;
-            font-size: 1.15rem;
-            transition: all 0.3s;
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
+            font-size: 1.3rem;
+            transition: var(--transition);
+            width: 50px;
+            height: 50px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .action-btn.edit:hover {
-            background: rgba(67, 97, 238, 0.1);
-            color: var(--primary);
+        .enterprise-action-btn.edit:hover {
+            background: var(--success);
+            transform: rotate(10deg);
         }
         
-        .action-btn.delete:hover {
-            background: rgba(255, 107, 107, 0.1);
-            color: var(--secondary);
+        .enterprise-action-btn.delete:hover {
+            background: var(--danger);
+            transform: rotate(-10deg);
         }
         
-        /* Summary Section */
-        .summary-container {
-            margin-top: 30px;
-            background: white;
+        /* Enterprise Summary */
+        .enterprise-summary-container {
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(42, 39, 79, 0.8) 0%, rgba(34, 32, 80, 0.9) 100%);
             border-radius: var(--border-radius);
             box-shadow: var(--card-shadow);
-            padding: 30px;
+            padding: 40px;
+            border: 1px solid rgba(106, 17, 203, 0.5);
         }
         
-        .summary-title {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--light-gray);
-        }
-        
-        .summary-content {
+        .enterprise-summary-content {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 40px;
         }
         
-        @media (min-width: 992px) {
-            .summary-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-        
-        .chart-container {
-            background: #f8faff;
-            border-radius: 12px;
-            padding: 20px;
-            height: 300px;
+        .enterprise-chart-container {
+            background: rgba(25, 25, 50, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            height: 350px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--light-gray);
+            border: 1px solid rgba(106, 17, 203, 0.5);
+            position: relative;
+            overflow: hidden;
         }
         
-        .chart-placeholder {
+        .enterprise-chart-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(106, 17, 203, 0.1) 0%, transparent 25%);
+        }
+        
+        .enterprise-chart {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        
+        .chart-bar {
+            flex: 1;
+            margin: 0 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 80px;
+        }
+        
+        .bar-value {
+            width: 100%;
+            background: linear-gradient(to top, var(--primary-light), var(--primary));
+            border-radius: 10px 10px 0 0;
+            transition: height 1s ease;
+            box-shadow: 0 5px 15px rgba(106, 17, 203, 0.4);
+        }
+        
+        .bar-label {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
             text-align: center;
-            color: var(--gray);
         }
         
-        .chart-placeholder i {
-            font-size: 4rem;
-            color: var(--light-gray);
-            margin-bottom: 15px;
-        }
-        
-        .summary-table-container {
+        .enterprise-table-container {
             overflow-x: auto;
+            background: rgba(25, 25, 50, 0.6);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(106, 17, 203, 0.5);
         }
         
-        .summary-table {
+        .enterprise-summary-table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 500px;
+            min-width: 700px;
         }
         
-        .summary-table th,
-        .summary-table td {
-            padding: 18px;
+        .enterprise-summary-table th,
+        .enterprise-summary-table td {
+            padding: 20px;
             text-align: left;
-            border-bottom: 1px solid var(--light-gray);
+            border-bottom: 1px solid rgba(106, 17, 203, 0.3);
         }
         
-        .summary-table th {
-            background: var(--primary-light);
-            color: var(--primary);
+        .enterprise-summary-table th {
+            background: rgba(106, 17, 203, 0.3);
+            color: var(--gold);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
         
-        .summary-table tr:last-child td {
+        .enterprise-summary-table tr:last-child td {
             border-bottom: none;
         }
         
-        .summary-table tr:nth-child(even) {
-            background: #f9faff;
+        .enterprise-summary-table tr:nth-child(even) {
+            background: rgba(35, 35, 70, 0.4);
         }
         
-        .summary-table tr:hover td {
-            background: rgba(67, 97, 238, 0.05);
+        .enterprise-summary-table tr:hover td {
+            background: rgba(106, 17, 203, 0.2);
         }
         
-        .highlight-cell {
+        .enterprise-highlight {
             font-weight: 700;
-            color: var(--primary);
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 30px;
-            color: var(--gray);
-            font-size: 1rem;
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--card-shadow);
-        }
-        
-        .footer p {
-            margin-bottom: 10px;
-        }
-        
-        .features-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-            text-align: left;
-        }
-        
-        .feature-item {
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-        
-        .feature-icon {
-            background: var(--primary-light);
-            color: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        
-        .feature-text h3 {
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        /* Notification */
-        .notification {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            padding: 18px 35px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 500;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-            transform: translateX(150%);
-            transition: transform 0.4s ease;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 15px;
+            color: var(--gold);
             font-size: 1.1rem;
         }
         
-        .notification.show {
+        /* Enterprise Footer */
+        .enterprise-footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            background: rgba(25, 25, 50, 0.6);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            border: 1px solid rgba(106, 17, 203, 0.5);
+        }
+        
+        .enterprise-footer p {
+            margin-bottom: 15px;
+        }
+        
+        .enterprise-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+            text-align: left;
+        }
+        
+        .enterprise-feature {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 25px;
+            background: rgba(35, 35, 70, 0.6);
+            border-radius: 20px;
+            transition: var(--transition);
+            border: 1px solid rgba(106, 17, 203, 0.3);
+        }
+        
+        .enterprise-feature:hover {
+            transform: translateY(-10px);
+            background: rgba(50, 50, 100, 0.6);
+            border-color: var(--gold);
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: var(--gold);
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(106, 17, 203, 0.4);
+        }
+        
+        .feature-text h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .feature-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Premium Notification */
+        .enterprise-notification {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            padding: 20px 40px;
+            border-radius: 15px;
+            color: var(--dark);
+            font-weight: 600;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            transform: translateX(150%);
+            transition: var(--transition);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--gold), #ffa500);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .enterprise-notification.show {
             transform: translateX(0);
         }
         
-        .notification.success {
-            background: linear-gradient(to right, var(--primary), var(--primary-dark));
-        }
-        
-        .notification.error {
-            background: linear-gradient(to right, #ff6b6b, #ff5252);
+        .enterprise-notification.error {
+            background: linear-gradient(to right, var(--danger), #ff5252);
+            color: white;
         }
         
         /* Responsive styles */
+        @media (max-width: 1200px) {
+            .premium-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+            }
+            
+            .enterprise-filter-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .enterprise-search {
+                width: 100%;
+            }
+        }
+        
         @media (max-width: 768px) {
-            header {
+            .premium-header {
                 padding: 20px;
-                text-align: center;
-                justify-content: center;
             }
             
-            .header-content {
-                flex-direction: column;
-                text-align: center;
+            .header-text h1 {
+                font-size: 2.2rem;
             }
             
-            .dashboard {
-                grid-template-columns: 1fr;
+            .price-tag {
+                font-size: 1.5rem;
+                padding: 10px 25px;
             }
             
-            .app-container {
-                grid-template-columns: 1fr;
+            .enterprise-card {
+                padding: 20px;
             }
             
-            .section-header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .filter-group {
-                width: 100%;
-            }
-            
-            .search-box {
-                width: 100%;
-            }
-            
-            .btn {
-                width: 100%;
-                padding: 16px;
-            }
-            
-            .summary-content {
-                grid-template-columns: 1fr;
+            .card-value {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="header-content">
-                <div class="logo">
-                    <i class="fas fa-business-time"></i>
+        <!-- Premium Enterprise Header -->
+        <header class="premium-header">
+            <div class="logo-container">
+                <div class="premium-logo">
+                    <i class="fas fa-crown"></i>
                 </div>
                 <div class="header-text">
-                    <h1>ระบบบันทึกการทำงานล่วงเวลา (OT)</h1>
-                    <p>แอปพลิเคชันระดับพรีเมียมสำหรับการจัดการ OT อย่างมืออาชีพ</p>
+                    <h1>ระบบบันทึก OT ระดับองค์กร</h1>
+                    <p>โซลูชันครบวงจรสำหรับการจัดการการทำงานล่วงเวลาในองค์กรขนาดใหญ่</p>
                 </div>
             </div>
             <div class="price-tag">
-                <i class="fas fa-tag"></i> 100,000 บาท
+                <i class="fas fa-gem"></i> มูลค่า 1,000,000 บาท
             </div>
         </header>
         
-        <div class="dashboard">
-            <div class="card">
-                <div class="card-title"><i class="fas fa-calendar-day"></i> ชั่วโมง OT วันนี้</div>
-                <div class="card-value">3.0</div>
-                <div class="card-subtitle">ชั่วโมง</div>
+        <!-- Enterprise Dashboard -->
+        <div class="enterprise-dashboard">
+            <div class="enterprise-card">
+                <div class="card-title"><i class="fas fa-calendar-day"></i> OT วันนี้</div>
+                <div class="card-value">4.5 ชม.</div>
+                <div class="card-subtitle">มูลค่า 13,500 บาท</div>
             </div>
-            <div class="card">
-                <div class="card-title"><i class="fas fa-calendar-week"></i> ชั่วโมง OT เดือนนี้</div>
-                <div class="card-value">36.5</div>
-                <div class="card-subtitle">ชั่วโมง</div>
+            <div class="enterprise-card">
+                <div class="card-title"><i class="fas fa-calendar-week"></i> OT เดือนนี้</div>
+                <div class="card-value">42.5 ชม.</div>
+                <div class="card-subtitle">มูลค่า 127,500 บาท</div>
             </div>
-            <div class="card">
-                <div class="card-title"><i class="fas fa-calendar-alt"></i> ชั่วโมง OT ปีนี้</div>
-                <div class="card-value">248.0</div>
-                <div class="card-subtitle">ชั่วโมง</div>
+            <div class="enterprise-card">
+                <div class="card-title"><i class="fas fa-calendar-alt"></i> OT ปีนี้</div>
+                <div class="card-value">325.0 ชม.</div>
+                <div class="card-subtitle">มูลค่า 975,000 บาท</div>
             </div>
-            <div class="card">
-                <div class="card-title"><i class="fas fa-coins"></i> ค่า OT โดยประมาณ</div>
-                <div class="card-value">74,400</div>
+            <div class="enterprise-card">
+                <div class="card-title"><i class="fas fa-coins"></i> ค่า OT ทั้งหมด</div>
+                <div class="card-value">2,450,500</div>
                 <div class="card-subtitle">บาท (คิดที่ 300 บาท/ชม.)</div>
             </div>
         </div>
         
-        <div class="app-container">
-            <div class="form-container">
-                <h2 class="form-title"><i class="fas fa-file-signature"></i> บันทึกการทำงาน OT</h2>
-                <form id="otForm">
+        <!-- Main App Container -->
+        <div class="enterprise-app-container">
+            <!-- Premium Form -->
+            <div class="premium-form-container">
+                <h2 class="form-title"><i class="fas fa-file-invoice-dollar"></i> บันทึกการทำงาน OT</h2>
+                <form id="enterprise-ot-form">
                     <div class="form-group">
-                        <label for="otDate"><i class="fas fa-calendar-check"></i> วันที่</label>
-                        <input type="date" id="otDate" class="form-control" required>
+                        <label for="otDate"><i class="fas fa-calendar"></i> วันที่</label>
+                        <input type="date" id="otDate" class="premium-input" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="otHours"><i class="fas fa-clock"></i> จำนวนชั่วโมง OT</label>
-                        <input type="number" id="otHours" class="form-control" min="0.5" max="24" step="0.5" placeholder="เช่น 1.5, 2.0, 3.5" required>
+                        <input type="number" id="otHours" class="premium-input" min="0.5" max="24" step="0.5" placeholder="เช่น 1.5, 2.0, 3.5" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="otDescription"><i class="fas fa-file-alt"></i> รายละเอียดการทำงาน</label>
-                        <textarea id="otDescription" class="form-control" rows="5" placeholder="อธิบายงานที่ทำในช่วง OT อย่างละเอียด" required></textarea>
+                        <textarea id="otDescription" class="premium-input" rows="5" placeholder="อธิบายงานที่ทำในช่วง OT อย่างละเอียด" required></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label for="otProject"><i class="fas fa-briefcase"></i> โปรเจค/งานที่เกี่ยวข้อง</label>
-                        <input type="text" id="otProject" class="form-control" placeholder="ระบุชื่อโปรเจคหรืองาน">
+                        <input type="text" id="otProject" class="premium-input" placeholder="ระบุชื่อโปรเจคหรืองาน">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <div class="form-group">
+                        <label for="otDepartment"><i class="fas fa-building"></i> แผนก</label>
+                        <select id="otDepartment" class="premium-input">
+                            <option value="it">เทคโนโลยีสารสนเทศ</option>
+                            <option value="finance">การเงิน</option>
+                            <option value="marketing">การตลาด</option>
+                            <option value="hr">ทรัพยากรบุคคล</option>
+                            <option value="operations">ปฏิบัติการ</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" class="premium-btn btn-block">
                         <i class="fas fa-save"></i> บันทึกข้อมูล OT
                     </button>
                 </form>
             </div>
             
-            <div class="records-container">
+            <!-- Enterprise Records -->
+            <div class="enterprise-records-container">
                 <div class="section-header">
-                    <h2 class="form-title"><i class="fas fa-list-alt"></i> รายการบันทึก OT</h2>
-                    <div class="filter-group">
-                        <input type="text" id="searchInput" class="search-box" placeholder="ค้นหาด้วยคำอธิบาย...">
-                        <select id="monthFilter" class="filter-select">
+                    <h2 class="form-title"><i class="fas fa-list-ol"></i> รายการบันทึก OT</h2>
+                    <div class="enterprise-filter-group">
+                        <input type="text" id="enterprise-search" class="enterprise-search" placeholder="ค้นหาด้วยคำอธิบาย...">
+                        <select id="enterprise-month" class="enterprise-select">
                             <option value="all">ทุกเดือน</option>
-                            <option value="0">มกราคม</option>
-                            <option value="1">กุมภาพันธ์</option>
-                            <option value="2">มีนาคม</option>
-                            <option value="3">เมษายน</option>
-                            <option value="4">พฤษภาคม</option>
-                            <option value="5">มิถุนายน</option>
-                            <option value="6">กรกฎาคม</option>
-                            <option value="7">สิงหาคม</option>
-                            <option value="8">กันยายน</option>
-                            <option value="9">ตุลาคม</option>
-                            <option value="10">พฤศจิกายน</option>
-                            <option value="11">ธันวาคม</option>
+                            <option value="jan">มกราคม</option>
+                            <option value="feb">กุมภาพันธ์</option>
+                            <option value="mar">มีนาคม</option>
+                            <option value="apr">เมษายน</option>
+                            <option value="may">พฤษภาคม</option>
+                            <option value="jun">มิถุนายน</option>
+                            <option value="jul">กรกฎาคม</option>
+                            <option value="aug">สิงหาคม</option>
+                            <option value="sep">กันยายน</option>
+                            <option value="oct" selected>ตุลาคม</option>
+                            <option value="nov">พฤศจิกายน</option>
+                            <option value="dec">ธันวาคม</option>
                         </select>
-                        <select id="yearFilter" class="filter-select">
-                            <option value="all">ทุกปี</option>
+                        <select id="enterprise-year" class="enterprise-select">
                             <option value="2023">2023</option>
-                            <option value="2024">2024</option>
+                            <option value="2024" selected>2024</option>
                             <option value="2025">2025</option>
                         </select>
                     </div>
                 </div>
                 
-                <div class="record-list" id="recordList">
-                    <div class="record-item">
+                <div class="enterprise-record-list" id="enterprise-record-list">
+                    <div class="enterprise-record-item">
                         <div class="record-info">
-                            <div class="record-date">15 ต.ค. 2566</div>
+                            <div class="record-date">15 ต.ค. 2024</div>
                             <div class="record-hours">3.5 ชม.</div>
                             <div class="record-desc">
+                                <strong>แผนก:</strong> เทคโนโลยีสารสนเทศ<br>
                                 <strong>โปรเจค:</strong> อัพเกรดระบบ ERP<br>
                                 <strong>รายละเอียด:</strong> ทดสอบระบบหลังการอัพเกรดและแก้ไขปัญหาที่พบ
                             </div>
                         </div>
-                        <div class="record-actions">
-                            <button class="action-btn edit">
+                        <div class="enterprise-actions">
+                            <button class="enterprise-action-btn edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="action-btn delete">
+                            <button class="enterprise-action-btn delete">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
                     </div>
                     
-                    <div class="record-item">
+                    <div class="enterprise-record-item">
                         <div class="record-info">
-                            <div class="record-date">18 ต.ค. 2566</div>
-                            <div class="record-hours">2.0 ชม.</div>
-                            <div class="record-desc">
-                                <strong>โปรเจค:</strong> รายงานประจำไตรมาส<br>
-                                <strong>รายละเอียด:</strong> เตรียมข้อมูลและจัดทำรายงานสรุปผลการดำเนินงานประจำไตรมาส
-                            </div>
-                        </div>
-                        <div class="record-actions">
-                            <button class="action-btn edit">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="action-btn delete">
-                                <i class="fas fa-trash-alt"></i>
-                            </button>
-                        </div>
-                    </div>
-                    
-                    <div class="record-item">
-                        <div class="record-info">
-                            <div class="record-date">20 ต.ค. 2566</div>
+                            <div class="record-date">18 ต.ค. 2024</div>
                             <div class="record-hours">4.0 ชม.</div>
                             <div class="record-desc">
-                                <strong>โปรเจค:</strong> ระบบจัดการลูกค้า<br>
-                                <strong>รายละเอียด:</strong> พัฒนาโมดูลรายงานใหม่ตามความต้องการของฝ่ายการตลาด
+                                <strong>แผนก:</strong> การตลาด<br>
+                                <strong>โปรเจค:</strong> แคมเปญเปิดตัวผลิตภัณฑ์<br>
+                                <strong>รายละเอียด:</strong> เตรียมงานเปิดตัวผลิตภัณฑ์ใหม่และจัดทำเอกสารสื่อสารการตลาด
                             </div>
                         </div>
-                        <div class="record-actions">
-                            <button class="action-btn edit">
+                        <div class="enterprise-actions">
+                            <button class="enterprise-action-btn edit">
                                 <i class="fas fa-edit"></i>
                             </button>
-                            <button class="action-btn delete">
+                            <button class="enterprise-action-btn delete">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="enterprise-record-item">
+                        <div class="record-info">
+                            <div class="record-date">20 ต.ค. 2024</div>
+                            <div class="record-hours">2.5 ชม.</div>
+                            <div class="record-desc">
+                                <strong>แผนก:</strong> การเงิน<br>
+                                <strong>โปรเจค:</strong> รายงานประจำไตรมาส<br>
+                                <strong>รายละเอียด:</strong> วิเคราะห์ข้อมูลทางการเงินและจัดทำรายงานสรุปผลการดำเนินงานประจำไตรมาส
+                            </div>
+                        </div>
+                        <div class="enterprise-actions">
+                            <button class="enterprise-action-btn edit">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="enterprise-action-btn delete">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </div>
@@ -757,63 +856,69 @@
             </div>
         </div>
         
-        <div class="summary-container">
-            <h2 class="summary-title"><i class="fas fa-chart-line"></i> สรุปผลการทำงาน OT</h2>
+        <!-- Enterprise Summary -->
+        <div class="enterprise-summary-container">
+            <h2 class="form-title"><i class="fas fa-chart-pie"></i> สรุปผลการทำงาน OT ประจำปี 2024</h2>
             
-            <div class="summary-content">
-                <div class="chart-container">
-                    <div class="chart-placeholder">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3>กราฟสรุปชั่วโมง OT รายเดือน</h3>
-                        <p>ในเวอร์ชันเต็มจะแสดงกราฟแบบเรียลไทม์</p>
+            <div class="enterprise-summary-content">
+                <div class="enterprise-chart-container">
+                    <div class="enterprise-chart" id="enterprise-chart">
+                        <!-- Dynamic chart will be generated by JavaScript -->
                     </div>
                 </div>
                 
-                <div class="summary-table-container">
-                    <table class="summary-table">
+                <div class="enterprise-table-container">
+                    <table class="enterprise-summary-table">
                         <thead>
                             <tr>
-                                <th>เดือน</th>
+                                <th>แผนก</th>
                                 <th>ชั่วโมง OT</th>
-                                <th>จำนวนวัน</th>
                                 <th>ค่า OT</th>
+                                <th>จำนวนพนักงาน</th>
                                 <th>สถานะ</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>ตุลาคม 2566</td>
-                                <td>36.5 ชม.</td>
-                                <td>12 วัน</td>
-                                <td>10,950 บาท</td>
-                                <td><span class="highlight-cell">รออนุมัติ</span></td>
+                                <td>เทคโนโลยีสารสนเทศ</td>
+                                <td>1,250 ชม.</td>
+                                <td>3,750,000 บาท</td>
+                                <td>45</td>
+                                <td><span class="enterprise-highlight">รออนุมัติ</span></td>
                             </tr>
                             <tr>
-                                <td>กันยายน 2566</td>
-                                <td>28.0 ชม.</td>
-                                <td>10 วัน</td>
-                                <td>8,400 บาท</td>
+                                <td>การตลาด</td>
+                                <td>980 ชม.</td>
+                                <td>2,940,000 บาท</td>
+                                <td>32</td>
                                 <td>อนุมัติแล้ว</td>
                             </tr>
                             <tr>
-                                <td>สิงหาคม 2566</td>
-                                <td>32.5 ชม.</td>
-                                <td>11 วัน</td>
-                                <td>9,750 บาท</td>
+                                <td>การเงิน</td>
+                                <td>760 ชม.</td>
+                                <td>2,280,000 บาท</td>
+                                <td>28</td>
                                 <td>อนุมัติแล้ว</td>
                             </tr>
                             <tr>
-                                <td>กรกฎาคม 2566</td>
-                                <td>25.5 ชม.</td>
-                                <td>9 วัน</td>
-                                <td>7,650 บาท</td>
+                                <td>ทรัพยากรบุคคล</td>
+                                <td>420 ชม.</td>
+                                <td>1,260,000 บาท</td>
+                                <td>18</td>
                                 <td>อนุมัติแล้ว</td>
+                            </tr>
+                            <tr>
+                                <td>ปฏิบัติการ</td>
+                                <td>1,150 ชม.</td>
+                                <td>3,450,000 บาท</td>
+                                <td>65</td>
+                                <td><span class="enterprise-highlight">รออนุมัติ</span></td>
                             </tr>
                             <tr>
                                 <td><strong>รวมทั้งหมด</strong></td>
-                                <td><strong>122.5 ชม.</strong></td>
-                                <td><strong>42 วัน</strong></td>
-                                <td><strong>36,750 บาท</strong></td>
+                                <td><strong>4,560 ชม.</strong></td>
+                                <td><strong>13,680,000 บาท</strong></td>
+                                <td><strong>188</strong></td>
                                 <td></td>
                             </tr>
                         </tbody>
@@ -822,56 +927,59 @@
             </div>
         </div>
         
-        <div class="features-list">
-            <div class="feature-item">
+        <!-- Enterprise Features -->
+        <div class="enterprise-features">
+            <div class="enterprise-feature">
+                <div class="feature-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>ปัญญาประดิษฐ์วิเคราะห์ข้อมูล</h3>
+                    <p>ระบบ AI วิเคราะห์รูปแบบการทำงานล่วงเวลาและให้คำแนะนำในการปรับปรุงประสิทธิภาพการทำงาน</p>
+                </div>
+            </div>
+            
+            <div class="enterprise-feature">
                 <div class="feature-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
                 <div class="feature-text">
                     <h3>ระบบรักษาความปลอดภัยระดับสูง</h3>
-                    <p>การเข้ารหัสข้อมูลและระบบยืนยันตัวตนหลายขั้นตอน</p>
+                    <p>การเข้ารหัสข้อมูลแบบ end-to-end และระบบยืนยันตัวตนหลายขั้นตอนด้วย biometric</p>
                 </div>
             </div>
             
-            <div class="feature-item">
+            <div class="enterprise-feature">
                 <div class="feature-icon">
                     <i class="fas fa-sync-alt"></i>
                 </div>
                 <div class="feature-text">
                     <h3>การซิงค์ข้อมูลแบบเรียลไทม์</h3>
-                    <p>อัพเดทข้อมูลทันทีทุกครั้งที่มีการบันทึกหรือแก้ไข</p>
+                    <p>เชื่อมต่อกับระบบ ERP, HRIS และระบบบัญชีขององค์กรแบบเรียลไทม์</p>
                 </div>
             </div>
             
-            <div class="feature-item">
+            <div class="enterprise-feature">
                 <div class="feature-icon">
-                    <i class="fas fa-file-export"></i>
+                    <i class="fas fa-robot"></i>
                 </div>
                 <div class="feature-text">
-                    <h3>รายงานแบบครบวงจร</h3>
-                    <p>ส่งออกรายงานในรูปแบบ PDF, Excel และ CSV</p>
-                </div>
-            </div>
-            
-            <div class="feature-item">
-                <div class="feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <div class="feature-text">
-                    <h3>รองรับทุกอุปกรณ์</h3>
-                    <p>ใช้งานได้ทั้งบนมือถือ, แท็บเล็ต และคอมพิวเตอร์</p>
+                    <h3>ระบบอัตโนมัติแบบครบวงจร</h3>
+                    <p>แจ้งเตือนอัตโนมัติ, การอนุมัติด้วย AI และการประมวลผลข้อมูลแบบอัตโนมัติ</p>
                 </div>
             </div>
         </div>
         
-        <div class="footer">
-            <p><strong>ระบบบันทึกการทำงานล่วงเวลา (OT) - เวอร์ชันพรีเมียม</strong></p>
-            <p>© 2023 บริษัท เทคโนโลยีเพื่อการจัดการ จำกัด | โทร: 02-123-4567 | อีเมล: sales@ot-premium.com</p>
-            <p>แอปพลิเคชันนี้เป็นส่วนหนึ่งของแพคเกจระดับองค์กร มูลค่า 100,000 บาท</p>
+        <!-- Enterprise Footer -->
+        <div class="enterprise-footer">
+            <p><strong>ระบบบันทึกการทำงานล่วงเวลา (OT) ระดับองค์กร - เวอร์ชัน Enterprise</strong></p>
+            <p>© 2024 บริษัท โซลูชันระดับองค์กร จำกัด | โทร: 02-987-6543 | อีเมล: enterprise@ot-solutions.com</p>
+            <p>โซลูชันนี้เป็นส่วนหนึ่งของแพคเกจระดับองค์กร มูลค่า 1,000,000 บาทต่อปี</p>
         </div>
     </div>
     
-    <div class="notification" id="notification">
+    <!-- Enterprise Notification -->
+    <div class="enterprise-notification" id="enterprise-notification">
         <i class="fas fa-check-circle"></i>
         <span>บันทึกข้อมูล OT เรียบร้อยแล้ว!</span>
     </div>
@@ -883,8 +991,11 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('otDate').value = today;
             
+            // Generate dynamic chart
+            generateChart();
+            
             // Form submission
-            document.getElementById('otForm').addEventListener('submit', function(e) {
+            document.getElementById('enterprise-ot-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
                 // Get form values
@@ -892,31 +1003,33 @@
                 const hours = document.getElementById('otHours').value;
                 const description = document.getElementById('otDescription').value;
                 const project = document.getElementById('otProject').value;
+                const department = document.getElementById('otDepartment').value;
                 
                 // Create new record
                 const newRecord = document.createElement('div');
-                newRecord.className = 'record-item';
+                newRecord.className = 'enterprise-record-item';
                 newRecord.innerHTML = `
                     <div class="record-info">
                         <div class="record-date">${formatDate(date)}</div>
                         <div class="record-hours">${hours} ชม.</div>
                         <div class="record-desc">
+                            <strong>แผนก:</strong> ${getDepartmentName(department)}<br>
                             ${project ? `<strong>โปรเจค:</strong> ${project}<br>` : ''}
                             <strong>รายละเอียด:</strong> ${description}
                         </div>
                     </div>
-                    <div class="record-actions">
-                        <button class="action-btn edit">
+                    <div class="enterprise-actions">
+                        <button class="enterprise-action-btn edit">
                             <i class="fas fa-edit"></i>
                         </button>
-                        <button class="action-btn delete">
+                        <button class="enterprise-action-btn delete">
                             <i class="fas fa-trash-alt"></i>
                         </button>
                     </div>
                 `;
                 
                 // Add to top of record list
-                const recordList = document.getElementById('recordList');
+                const recordList = document.getElementById('enterprise-record-list');
                 recordList.insertBefore(newRecord, recordList.firstChild);
                 
                 // Add event listeners to new buttons
@@ -931,9 +1044,9 @@
             });
             
             // Search functionality
-            document.getElementById('searchInput').addEventListener('input', function() {
+            document.getElementById('enterprise-search').addEventListener('input', function() {
                 const searchTerm = this.value.toLowerCase();
-                const records = document.querySelectorAll('.record-item');
+                const records = document.querySelectorAll('.enterprise-record-item');
                 
                 records.forEach(record => {
                     const text = record.textContent.toLowerCase();
@@ -945,10 +1058,6 @@
                 });
             });
             
-            // Filter functionality
-            document.getElementById('monthFilter').addEventListener('change', filterRecords);
-            document.getElementById('yearFilter').addEventListener('change', filterRecords);
-            
             // Setup initial record actions
             setupRecordActions();
         });
@@ -956,56 +1065,113 @@
         // Format date to Thai format
         function formatDate(dateString) {
             const date = new Date(dateString);
-            const options = { day: 'numeric', month: 'short', year: 'numeric' };
-            const formatted = date.toLocaleDateString('th-TH', options);
-            return formatted;
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            return `${day} ${getThaiMonth(month)} ${year + 543}`;
         }
         
-        // Filter records
-        function filterRecords() {
-            const monthFilter = document.getElementById('monthFilter').value;
-            const yearFilter = document.getElementById('yearFilter').value;
+        // Get Thai month name
+        function getThaiMonth(month) {
+            const months = [
+                "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
+                "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+            ];
+            return months[month - 1];
+        }
+        
+        // Get department name
+        function getDepartmentName(dept) {
+            const departments = {
+                'it': 'เทคโนโลยีสารสนเทศ',
+                'finance': 'การเงิน',
+                'marketing': 'การตลาด',
+                'hr': 'ทรัพยากรบุคคล',
+                'operations': 'ปฏิบัติการ'
+            };
+            return departments[dept] || dept;
+        }
+        
+        // Generate dynamic chart
+        function generateChart() {
+            const chartContainer = document.getElementById('enterprise-chart');
+            chartContainer.innerHTML = '';
             
-            // In a real app, this would filter actual data
-            // For this demo, we'll just show a notification
-            if (monthFilter !== 'all' || yearFilter !== 'all') {
-                showNotification('กรองข้อมูลเรียบร้อยแล้ว', 'success');
-            }
+            // Sample data
+            const months = [
+                "ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.",
+                "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."
+            ];
+            
+            months.forEach((month, index) => {
+                const height = 20 + Math.floor(Math.random() * 80); // Random height between 20-100
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.innerHTML = `
+                    <div class="bar-value" style="height: ${height}%;"></div>
+                    <div class="bar-label">${month}</div>
+                `;
+                
+                chartContainer.appendChild(bar);
+                
+                // Animate the bar after a delay
+                setTimeout(() => {
+                    bar.querySelector('.bar-value').style.height = `${height}%`;
+                }, index * 150);
+            });
         }
         
         // Show notification
         function showNotification(message, type) {
-            const notification = document.getElementById('notification');
+            const notification = document.getElementById('enterprise-notification');
             notification.querySelector('span').textContent = message;
-            notification.className = `notification ${type} show`;
+            notification.className = `enterprise-notification show ${type === 'error' ? 'error' : ''}`;
             
             setTimeout(() => {
-                notification.className = 'notification';
-            }, 3500);
+                notification.className = 'enterprise-notification';
+            }, 4000);
         }
         
         // Setup record actions
         function setupRecordActions(element = null) {
-            const elements = element ? [element] : document.querySelectorAll('.record-item');
+            const elements = element ? [element] : document.querySelectorAll('.enterprise-record-item');
             
             elements.forEach(item => {
-                const editBtn = item.querySelector('.action-btn.edit');
-                const deleteBtn = item.querySelector('.action-btn.delete');
+                const editBtn = item.querySelector('.enterprise-action-btn.edit');
+                const deleteBtn = item.querySelector('.enterprise-action-btn.delete');
                 
                 if (editBtn) {
                     editBtn.addEventListener('click', function() {
-                        const date = item.querySelector('.record-date').textContent;
+                        const dateText = item.querySelector('.record-date').textContent;
                         const hours = item.querySelector('.record-hours').textContent.replace(' ชม.', '');
                         const descElement = item.querySelector('.record-desc');
-                        const project = descElement.innerHTML.includes('โปรเจค:') ? 
-                            descElement.innerHTML.split('<strong>โปรเจค:</strong> ')[1].split('<br>')[0] : '';
+                        
+                        // Extract department
+                        let department = 'it';
+                        if (descElement.innerHTML.includes('แผนก:')) {
+                            const deptText = descElement.innerHTML.split('<strong>แผนก:</strong> ')[1].split('<br>')[0];
+                            department = Object.keys(departments).find(
+                                key => departments[key] === deptText
+                            ) || 'it';
+                        }
+                        
+                        // Extract project
+                        let project = '';
+                        if (descElement.innerHTML.includes('โปรเจค:')) {
+                            project = descElement.innerHTML.split('<strong>โปรเจค:</strong> ')[1].split('<br>')[0];
+                        }
+                        
+                        // Extract description
                         const description = descElement.innerHTML.split('<strong>รายละเอียด:</strong> ')[1];
                         
                         // Fill form with data
-                        document.getElementById('otDate').value = convertThaiDateToISO(date);
+                        // Note: Date conversion is simplified for demo
+                        document.getElementById('otDate').value = new Date().toISOString().split('T')[0];
                         document.getElementById('otHours').value = hours;
                         document.getElementById('otDescription').value = description;
                         document.getElementById('otProject').value = project;
+                        document.getElementById('otDepartment').value = department;
                         
                         // Remove the record
                         item.remove();
@@ -1021,32 +1187,21 @@
                             setTimeout(() => {
                                 item.remove();
                                 showNotification('ลบรายการ OT เรียบร้อยแล้ว', 'success');
-                            }, 300);
+                            }, 500);
                         }
                     });
                 }
             });
         }
         
-        // Convert Thai date to ISO format (simplified for demo)
-        function convertThaiDateToISO(thaiDate) {
-            // This is a simplified version for demo purposes
-            // In a real app, you would need a proper conversion
-            const months = {
-                'ม.ค.': '01', 'ก.พ.': '02', 'มี.ค.': '03', 'เม.ย.': '04',
-                'พ.ค.': '05', 'มิ.ย.': '06', 'ก.ค.': '07', 'ส.ค.': '08',
-                'ก.ย.': '09', 'ต.ค.': '10', 'พ.ย.': '11', 'ธ.ค.': '12'
-            };
-            
-            const parts = thaiDate.split(' ');
-            if (parts.length === 3) {
-                const day = parts[0].padStart(2, '0');
-                const month = months[parts[1]];
-                const year = (parseInt(parts[2]) - 543).toString();
-                return `${year}-${month}-${day}`;
-            }
-            return new Date().toISOString().split('T')[0];
-        }
+        // Department mapping
+        const departments = {
+            'it': 'เทคโนโลยีสารสนเทศ',
+            'finance': 'การเงิน',
+            'marketing': 'การตลาด',
+            'hr': 'ทรัพยากรบุคคล',
+            'operations': 'ปฏิบัติการ'
+        };
     </script>
 </body>
 </html>
